@@ -1,0 +1,35 @@
+#filter {
+    margin-top: 0px;
+    padding: 20px;
+    box-shadow: 0 3px 7px rgba(0,0,0,0.5);
+    width: 17%;
+}
+#filter input {
+    width: 100%;
+}
+#filter label {
+    padding: 10px;
+}
+#listView {
+    display: inline-block;
+    width: 80%
+}
+#main {
+    display: flex;
+    align-items: flex-start;
+}
+.brand {
+    font-size: 20px;
+}
+.bar {
+    width: 17%;
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+.bar:hover {
+    background-color: whitesmoke;
+    box-shadow: 0 3px 7px rgba(0,0,0,0.5);
+    border-radius: 5px;
+}
+
