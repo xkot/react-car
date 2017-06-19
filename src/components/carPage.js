@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {getCarById} from './api';
+import {getCarById} from '../api';
 
 export function CarPage () {
     let car = getCarById(1);

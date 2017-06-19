@@ -1,13 +1,19 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter, Route } from 'react-router-dom';
-import { MainPage } from './index';
-import { CarPage } from './carPage';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { CarPage } from './components/carPage';
+import MainPage from './components/popularCars';
 
 render((
-    <BrowserRouter basename={<MainPage/>}>
-        <Route path="/" component={MainPage}>
+
+    <BrowserRouter>
+        <div>
+            <Redirect to="/popular"/>
             <Route path="/car" component={CarPage}/>
-        </Route>
+            <Route path="/popular" component={MainPage}/>
+        </div>
     </BrowserRouter>
+
 ), document.getElementById('root'));
+
+

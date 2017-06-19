@@ -1,4 +1,8 @@
 import React from 'react';
+import { GET_FILTER_VALUE } from './../reduxComponents/actions';
+import getFilterValue from './../reduxComponents/reducers';
+import { store } from './../reduxComponents/stores';
+
 
 export class Filter extends React.Component {
     constructor(props) {
@@ -13,8 +17,7 @@ export class Filter extends React.Component {
                     <input
                         name="brand"
                         type="text"
-                        // value={}
-                        onChange={this.handleInputChange} />
+                        onChange={(e) => {store.dispatch(getFilterValue("brand", e.target.value)); e.preventDefault()}} />
                 </label>
                 <br /><br />
                 <label>
@@ -23,7 +26,7 @@ export class Filter extends React.Component {
                         name="model"
                         type="text"
                         // value={}
-                        onChange={this.handleInputChange} />
+                        onChange={this.props.handleInputChange} />
                 </label>
                 <br /><br />
                 <label>
@@ -32,13 +35,13 @@ export class Filter extends React.Component {
                         name="minPrice"
                         type="number"
                         // value={}
-                        onChange={this.handleInputChange} />
+                        onChange={this.props.handleInputChange} />
                      до
                     <input
                         name="maxPrice"
                         type="number"
                         // value={}
-                        onChange={this.handleInputChange} />
+                        onChange={this.props.handleInputChange} />
                 </label>
                 <br /><br />
                 <label>
@@ -47,13 +50,13 @@ export class Filter extends React.Component {
                         name="minYear"
                         type="number"
                         // value={}
-                        onChange={this.handleInputChange} />
+                        onChange={this.props.handleInputChange} />
                      до
                     <input
                         name="maxYear"
                         type="number"
                         // value={}
-                        onChange={this.handleInputChange} />
+                        onChange={this.props.handleInputChange} />
                 </label>
                 <br /><br />
                 <label>
@@ -62,9 +65,9 @@ export class Filter extends React.Component {
                         name="transmission"
                         type="checkbox"
                         // checked={}
-                        onChange={this.handleInputChange} />
+                        onChange={this.props.handleInputChange} />
                 </label>
-                <button type="submit" onClick={this.handleSubmit}>Submit</button>
+                <button type="submit" onClick={(e) => { console.log(store.getState().filterValues); e.preventDefault();}}>Submit</button>
             </form>
         );
     }
