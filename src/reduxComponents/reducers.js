@@ -1,5 +1,8 @@
 import { GET_FILTER_VALUE } from './actions';
 import { GET_CARS } from './actions';
+import { getCars } from './../api';
+
+let filteredCars = getCars();
 
 const initialState = {
     brand: "",
@@ -9,7 +12,7 @@ const initialState = {
     maxPrice: "",
     minYear: "",
     maxYear: "",
-    carArray: []
+    carArray: filteredCars
 };
 
 export default function filter (state = initialState, action) {

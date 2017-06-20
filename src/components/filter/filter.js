@@ -1,9 +1,35 @@
 import React from 'react';
 import { store } from './../../reduxComponents/stores';
+import { getCars } from './../../api';
 
 export default class Filter extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    filterCars () {
+        let allCars = getCars();
+        let storeInfo = store.getState();
+        if (storeInfo.brand) {
+            allCars = allCars.filter((car) => {return car.brand.toUpperCase() === storeInfo.brand.toUpperCase()});
+        }
+        if (storeInfo.model) {
+            allCars = allCars.filter((car) => {return car.model.toUpperCase() === storeInfo.model.toUpperCase()});
+        }
+        if (storeInfo.minPrice) {
+            allCars = allCars.filter((car) => {return car.price >= storeInfo.minPrice});
+        }
+        if (storeInfo.maxPrice) {
+            allCars = allCars.filter((car) => {return car.price <= storeInfo.maxPrice});
+        }
+        if (storeInfo.minYear) {
+            allCars = allCars.filter((car) => {return car.year >= storeInfo.minYear});
+        }
+        if (storeInfo.maxYear) {
+            allCars = allCars.filter((car) => {return car.year <= storeInfo.maxYear});
+        }
+
+        return allCars;
     }
 
     render() {
@@ -58,7 +84,12 @@ export default class Filter extends React.Component {
                         type="checkbox"
                         onChange={(e) => this.props.getFilterValue(e, "maxYear")} />
                 </label>
-                <button type="submit" onClick={(e) => { console.log(store.getState()); e.preventDefault();}}>Submit</button>
+                <button type="submit" onClick={(e) => {
+                    let cars = this.filterCars();
+                    this.props.getFilteredCars(cars);
+                    e.preventDefault();}}>
+                    Submit
+                </button>
             </form>
         );
     }
