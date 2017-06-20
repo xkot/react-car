@@ -48,7 +48,7 @@ export default class Filter extends React.Component {
                     <input
                         name="model"
                         type="text"
-                        onChange={(e) => { this.props.getFilterValue(e, "model"); }} />
+                        onChange={(e) => { this.props.getFilterValue(e, "model");}} />
                 </label>
                 <br /><br />
                 <label>

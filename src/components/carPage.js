@@ -15,8 +15,3 @@ export function CarPage () {
         </div>
     );
 }
-
-ReactDOM.render(
-    <CarPage />,
-    document.getElementById('root')
-);

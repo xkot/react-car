@@ -29,12 +29,24 @@ export default class carView extends React.Component {
     componentDidMount () {
         this.props.getFilteredCars();
         const cars = store.getState().carArray;
-        console.log(cars);
         cars.sort((a, b) => {return b.views-a.views});
         cars.slice(0,25);
+        store.subscribe(this.handleStoreChange.bind(this));
         this.setState({
             barList: cars
         });
+    }
+
+    handleStoreChange () {
+        let currentState = store.getState().carArray;
+        let previousState = this.state.barList;
+        if (currentState !== previousState)
+        {
+            document.getElementById("listView");
+            this.state.barList = currentState;
+            console.log(this.state.barList);
+            this.render();
+        }
     }
 
     render() {
@@ -42,6 +54,7 @@ export default class carView extends React.Component {
             <div id="listView">
                 {
                     this.state.barList.map(function (car) {
+                        //console.log(car);
                         return <Bar
                             key = {car.id}
                             id = {car.id}
