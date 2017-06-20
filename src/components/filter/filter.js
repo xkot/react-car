@@ -1,10 +1,7 @@
 import React from 'react';
-import { GET_FILTER_VALUE } from './../reduxComponents/actions';
-import getFilterValue from './../reduxComponents/reducers';
-import { store } from './../reduxComponents/stores';
+import { store } from './../../reduxComponents/stores';
 
-
-export class Filter extends React.Component {
+export default class Filter extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -17,7 +14,7 @@ export class Filter extends React.Component {
                     <input
                         name="brand"
                         type="text"
-                        onChange={(e) => {store.dispatch(getFilterValue("brand", e.target.value)); e.preventDefault()}} />
+                        onChange={(e) => this.props.getFilterValue(e, "brand")} />
                 </label>
                 <br /><br />
                 <label>
@@ -25,8 +22,7 @@ export class Filter extends React.Component {
                     <input
                         name="model"
                         type="text"
-                        // value={}
-                        onChange={this.props.handleInputChange} />
+                        onChange={(e) => { this.props.getFilterValue(e, "model"); }} />
                 </label>
                 <br /><br />
                 <label>
@@ -34,14 +30,12 @@ export class Filter extends React.Component {
                     <input
                         name="minPrice"
                         type="number"
-                        // value={}
-                        onChange={this.props.handleInputChange} />
+                        onChange={(e) => this.props.getFilterValue(e, "minPrice")} />
                      до
                     <input
                         name="maxPrice"
                         type="number"
-                        // value={}
-                        onChange={this.props.handleInputChange} />
+                        onChange={(e) => this.props.getFilterValue(e, "maxPrice")} />
                 </label>
                 <br /><br />
                 <label>
@@ -49,14 +43,12 @@ export class Filter extends React.Component {
                     <input
                         name="minYear"
                         type="number"
-                        // value={}
-                        onChange={this.props.handleInputChange} />
+                        onChange={(e) => this.props.getFilterValue(e, "minYear")} />
                      до
                     <input
                         name="maxYear"
                         type="number"
-                        // value={}
-                        onChange={this.props.handleInputChange} />
+                        onChange={(e) => this.props.getFilterValue(e, "maxYear")} />
                 </label>
                 <br /><br />
                 <label>
@@ -64,11 +56,11 @@ export class Filter extends React.Component {
                     <input
                         name="transmission"
                         type="checkbox"
-                        // checked={}
-                        onChange={this.props.handleInputChange} />
+                        onChange={(e) => this.props.getFilterValue(e, "maxYear")} />
                 </label>
-                <button type="submit" onClick={(e) => { console.log(store.getState().filterValues); e.preventDefault();}}>Submit</button>
+                <button type="submit" onClick={(e) => { console.log(store.getState()); e.preventDefault();}}>Submit</button>
             </form>
         );
     }
 }
+

@@ -1,7 +1,6 @@
 import React from 'react';
-import {Filter} from './filter';
-import {getCars} from './../api';
 import { Link } from 'react-router-dom';
+import { store } from './../reduxComponents/stores';
 
 
 function Bar (props) {
@@ -19,25 +18,18 @@ function Bar (props) {
     );
 }
 
-export default class MainPage extends React.Component {
-    constructor () {
-        super();
+export default class carView extends React.Component {
+    constructor (props) {
+        super(props);
         this.state = {
-            barList: [],
-            brand: '',
-            model: '',
-            minPrice: '',
-            maxPrice: '',
-            minYear: '',
-            maxYear: '',
-            transmission: false
+            barList: []
         };
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount () {
-        let cars = getCars();
+        this.props.getFilteredCars();
+        const cars = store.getState().carArray;
+        console.log(cars);
         cars.sort((a, b) => {return b.views-a.views});
         cars.slice(0,25);
         this.setState({
@@ -45,46 +37,24 @@ export default class MainPage extends React.Component {
         });
     }
 
-    handleInputChange(event) {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-
-        this.setState({
-            [name]: value
-        });
-    }
-
-    handleSubmit (event) {
-        // alert(`Марка: ${this.state.brand},
-        // Модель: ${this.state.model},
-        // Цена: от ${this.state.minPrice} до ${this.state.maxPrice},
-        // АКПП: ${this.state.transmission}`);
-        // event.preventDefault();
-        alert ('submit');
-    }
-
     render() {
         return (
-                <div id="main">
-                    <div id="listView">
-                        {
-                            this.state.barList.map(function (car) {
-                                return <Bar
-                                    key = {car.id}
-                                    id = {car.id}
-                                    brand = {car.brand}
-                                    model = {car.model}
-                                    photo = {car.photo}
-                                    capacity = {car.capacity}
-                                    mileage = {car.mileage}
-                                    price = {car.price}
-                                />;
-                            })
-                        }
-                    </div>
-                    <Filter onChange={this.handleInputChange} onClick={this.handleSubmit}/>
-                </div>
+            <div id="listView">
+                {
+                    this.state.barList.map(function (car) {
+                        return <Bar
+                            key = {car.id}
+                            id = {car.id}
+                            brand = {car.brand}
+                            model = {car.model}
+                            photo = {car.photo}
+                            capacity = {car.capacity}
+                            mileage = {car.mileage}
+                            price = {car.price}
+                        />;
+                    })
+                }
+            </div>
         );
     }
 }

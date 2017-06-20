@@ -1,4 +1,4 @@
 import { createStore } from 'redux';
-import getFilterValue from './reducers';
+import filter from './reducers';
 
-export let store = createStore(getFilterValue);
+export let store = createStore(filter);
