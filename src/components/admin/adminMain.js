@@ -20,9 +20,11 @@ function Car (props) {
                 <button type="button" onClick={(e) => {props.deleteCar(car.id); e.preventDefault()}}>
                     Удалить
                 </button> <br/>
-                <button type="button" >
-                    Редактировать
-                </button>
+                <Link to={'/editCar/' + car.id}>
+                    <button type="button" >
+                        Редактировать
+                    </button>
+                </Link>
             </td>
         </tr>
     );
@@ -38,29 +40,35 @@ export class AdminMain extends React.Component {
     deleteCar (id) {
         removeCar(id);
         alert("Запись удалена!");
-        this.render();  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        this.cars = getCars();
+        this.forceUpdate();
     }
 
     render() {
         return (
             <div id="adminMain">
-                <div id="adminHeader">
+                <div id="adminHeader" className="header">
                     <Link to='/'>
                         <button type="button" >
                             На главную
                         </button>
                     </Link>
+                    <Link to='/addCar'>
+                        <button type="button" >
+                            Добавить объявление
+                        </button>
+                    </Link>
                 </div>
-                <table>
+                <table id="carTable">
                     <thead>
-                    <tr>
-                        <td>Фото</td>
-                        <td>Марка</td>
-                        <td>Модель</td>
-                        <td>Цена</td>
-                        <td>Другая информация</td>
-                        <td></td>
-                    </tr>
+                        <tr>
+                            <td>Фото</td>
+                            <td>Марка</td>
+                            <td>Модель</td>
+                            <td>Цена</td>
+                            <td>Другая информация</td>
+                            <td></td>
+                        </tr>
                     </thead>
                     <tbody>
                     {

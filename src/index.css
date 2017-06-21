@@ -1,3 +1,8 @@
+#addCar label {
+    display: inline-block;
+    margin-top: 15px;
+    margin-left: 50px;
+}
 #filter {
     display: inline-block;
     margin-top: 0;
@@ -5,11 +10,87 @@
     box-shadow: 0 3px 7px rgba(0,0,0,0.5);
     width: 17%;
 }
+#adminHeader button {
+    margin: 10px;
+    background-color: white;
+    color: black;
+    border: 2px solid orange;
+    border-radius: 4px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+#adminHeader button:hover {
+    background-color: orange;
+    color: white;
+}
+
+#carTable {
+    width: 100%;
+    text-decoration: none;
+}
+#carTable button {
+    margin: 2px;
+    background-color: white;
+    color: black;
+    border: 2px solid orange;
+    border-radius: 2px;
+    padding: 5px 7px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 80%;
+}
+#carTable thead {
+    font-size: 24px;
+}
 #filter input {
+    width: 100%;
+}
+#filter select {
     width: 100%;
 }
 #filter label {
     padding: 10px;
+}
+#filter button {
+    margin: 20px;
+    background-color: orange;
+    color: white;
+    border: 2px solid orange;
+    border-radius: 4px;
+    padding: 15px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+#mainHeader button {
+    margin-left: 70%;
+    background-color: white;
+    color: black;
+    border: 2px solid orange;
+    border-radius: 4px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 10%;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+#mainHeader button:hover {
+    background-color: orange;
+    color: white;
+}
+#infoCar {
+    margin-top: 20px;
 }
 #listView {
     display: inline-block;
@@ -18,6 +99,15 @@
 #main {
     display: flex;
     align-items: flex-start;
+}
+#newCarInfo {
+    width: 40%;
+}
+#newCarInfo div {
+    margin: 10px;
+}
+#newCarInfo input {
+    width: 100%;
 }
 .brand {
     font-size: 20px;
@@ -32,5 +122,31 @@
     background-color: whitesmoke;
     box-shadow: 0 3px 7px rgba(0,0,0,0.5);
     border-radius: 5px;
+}
+.header {
+    display: block;
+    background-color: orangered;
+    padding: 20px;
+    width: 100%;
+    box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.19);
+}
+.header button {
+    margin-left: 2%;
+    background-color: white;
+    color: black;
+    border: 2px solid orange;
+    border-radius: 4px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 10%;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+.header button:hover {
+    background-color: orange;
+    color: white;
 }
 

@@ -12,6 +12,7 @@ function Bar (props) {
                     <img src={props.photo} width="150px"/><br/>
                     {props.mileage} км, {props.capacity} л <br/>
                     {props.price} BYN <br/>
+                    {props.year} г <br/>
                 </div>
             </div>
         </Link>
@@ -44,8 +45,10 @@ export default class carView extends React.Component {
         {
             document.getElementById("listView");
             this.state.barList = currentState;
-            console.log(this.state.barList);
-            this.render();
+            if (!this.state.barList) {
+                alert ("Нет данных для отображения!");
+            }
+            this.forceUpdate();
         }
     }
 
@@ -54,7 +57,6 @@ export default class carView extends React.Component {
             <div id="listView">
                 {
                     this.state.barList.map(function (car) {
-                        //console.log(car);
                         return <Bar
                             key = {car.id}
                             id = {car.id}
@@ -64,6 +66,7 @@ export default class carView extends React.Component {
                             capacity = {car.capacity}
                             mileage = {car.mileage}
                             price = {car.price}
+                            year = {car.year}
                         />;
                     })
                 }

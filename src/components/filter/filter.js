@@ -28,7 +28,9 @@ export default class Filter extends React.Component {
         if (storeInfo.maxYear) {
             allCars = allCars.filter((car) => {return car.year <= storeInfo.maxYear});
         }
-
+        if (storeInfo.transmission) {
+            allCars = allCars.filter((car) => {return car.transmission === storeInfo.transmission});
+        }
         return allCars;
     }
 
@@ -48,7 +50,7 @@ export default class Filter extends React.Component {
                     <input
                         name="model"
                         type="text"
-                        onChange={(e) => { this.props.getFilterValue(e, "model");}} />
+                        onChange={(e) => this.props.getFilterValue(e, "model")} />
                 </label>
                 <br /><br />
                 <label>
@@ -79,11 +81,12 @@ export default class Filter extends React.Component {
                 <br /><br />
                 <label>
                     АКПП:
-                    <input
-                        name="transmission"
-                        type="checkbox"
-                        onChange={(e) => this.props.getFilterValue(e, "maxYear")} />
-                </label>
+                    <select onChange={(e) => this.props.getFilterValue(e, "transmission")}>
+                        <option></option>
+                        <option>Автомат</option>
+                        <option>Механика</option>
+                    </select>
+                </label> <br />
                 <button type="submit" onClick={(e) => {
                     let cars = this.filterCars();
                     this.props.getFilteredCars(cars);

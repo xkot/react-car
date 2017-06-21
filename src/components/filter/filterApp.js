@@ -1,11 +1,12 @@
 import React from 'react';
 import Filter from './filter';
 import CarView from './../popularCars';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { store } from './../../reduxComponents/stores';
 import { bindActionCreators } from 'redux';
 import { getFilteredCars, getFilterValue } from './../../reduxComponents/actions';
-import { store } from './../../reduxComponents/stores';
-import { getCars, setRandom } from './../../api';
+import { getCars } from './../../api';
 
 class FilterApp extends React.Component {
     constructor() {
@@ -22,13 +23,23 @@ class FilterApp extends React.Component {
     getFilteredCars (cars) {
         cars = cars || getCars();
         this.props.getFilteredCars(cars);
+        console.log(store.getState());
     }
 
     render() {
         return (
-            <div id = "main">
-                <CarView getFilteredCars={this.getFilteredCars}/>
-                <Filter getFilterValue={this.getFilterValue} getFilteredCars={this.getFilteredCars}/>
+            <div>
+                <div id="mainHeader" className="header">
+                    <Link to='/admin'>
+                        <button type="button" >
+                            Панель администрирования
+                        </button>
+                    </Link>
+                </div>
+                <div id = "main">
+                    <CarView getFilteredCars={this.getFilteredCars}/>
+                    <Filter getFilterValue={this.getFilterValue} getFilteredCars={this.getFilteredCars}/>
+                </div>
             </div>
         );
     }
@@ -36,8 +47,6 @@ class FilterApp extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        // filters: state.mainReducer.filters,
-        // posts: state.mainReducer.filteredPosts
     }
 }
 
